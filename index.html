@@ -20,15 +20,90 @@
             <button id="login" class="btn btn-primary">Enter</button>
     
         </div>
-       
-    </div>
+     </div>
+
+    <div id="transaction-area">
+       <div class="row">
+        <div class="col-md-4">
+           <div class="deposit status" >
+            <h5>Deposit</h5>
+            <h2>$ <span id="currentDeposit">00</span></h2>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="withdrae status">
+            <h5>Withdraw</h5>
+            <h2>$000</h2>
+           </div>
+        </div>
+        <div class="col-md-4">
+            <div class="balance status">
+                <h5>Balance</h5>
+                <h2>$ <span id="currentBlance">345</span></h2>
+            </div>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-sm-6">
+            <div class="submit-area">
+                <h4>Deposit</h4>
+                <input id="dipositMony" type="text"  class="form-control" placeholder="$ amount you want diposit">
+                <br>
+                <button id="addDiposit" class="btn btn-primary marjin">Deposit</button>
+            </div>
+         </div>
+      
+        <div class="col-sm-6">
+            <div class="submit-area">
+                <h4>Withdraw</h4>
+                <input type="text"  class="form-control" placeholder="$ amount you want witdraw">
+                <br>
+                <button id="add" class="btn btn-primary marjin">Withdraw</button>
+            </div>
+        </div>
+       </div>
+    
 
     <script>
+        // loging button event handler
         const loginBtn = document.getElementById('login');
         loginBtn.addEventListener('click', function(){
             const loginArea = document.getElementById('login-area');
         loginArea.style.display = "none"
-  })
+        const transactionArea = document.getElementById('transaction-area');
+        transactionArea.style.display= 'block'
+        })
+        //diposit button event handler
+        const dipositBtn = document.getElementById('addDiposit');
+        dipositBtn.addEventListener('click',function(){
+            const dipositAmount = document.getElementById('dipositMony').value;
+            const depositNumber = parseFloat(dipositAmount);
+
+            // const nowDeposit = document.getElementById('currentDeposit').innerText;
+            // const currentDepositNumber = parseFloat(nowDeposit);
+            // const totalDeposit = dipositNumber + currentDepositNumber;
+            // document.getElementById('currentDeposit').innerText = totalDeposit;
+
+            // const carrentBlance = document.getElementById('currentBlance').innerText;
+            // const currentBlanceNumber = parseFloat(carrentBlance);
+            // const totalBlance = dipositNumber + currentDepositNumber;
+            // document.getElementById('currentBlance').innerText = totalDeposit;
+
+            updateSpanText("currentDeposit", depositNumber);
+            updateSpanText("currentBlance", depositNumber);
+
+            
+            
+
+            document.getElementById('dipositMony').value = "";
+        })
+        function updateSpanText(id, dipositNumber){
+            const current = document.getElementById(id).innerText;
+            currentNumber = parseFloat(current);
+            const totalAmount = dipositNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
+        }
+
         
     </script>
 </body>
